@@ -80,6 +80,17 @@ class EditTask extends Task {
             listItem.replaceChild(listEditBtn, listAddBtn);
             listItem.removeChild(new_desc);
             listItem.removeChild(new_date);
+
+            // var data = { 
+            //     "taskData": new_task.value,
+            //     "descData": new_desc.value,
+            //     "dateData" : new_date.value
+            // };
+            // localStorage.setItem("data", JSON.stringify(data));
+            // var allTasks = new Array();
+            // allTasks.push(task);
+            // localStorage.setItem("allTasks", JSON.stringify(allTasks));        
+            // let obj = new Task(task, desc, date);
         });
     
         listEditBtn.onclick = function() { edit_event(list, listItem, listText, listDeleteBtn, listEditBtn, new_task.value, new_desc.value, new_date.value); }
@@ -93,9 +104,17 @@ class EditTask extends Task {
         var task = document.querySelector("#todo_task").value;
         var desc = document.querySelector("#todo_desc").value;
         var date = document.querySelector("#todo_date").value;
-    
+        var data = { 
+            "taskData": task,
+            "descData": desc,
+            "dateData" : date
+        };
+        var allTasks = new Array();
+        data.allTasks = allTasks;   
+        localStorage.setItem("data", JSON.stringify(data));
+        
+        //       
         let obj = new Task(task, desc, date);
     
         obj.add_new_task(task, desc, date);
     }
-
