@@ -1,8 +1,12 @@
 export default class Dom{
     constructur(element,type) {
-       
         this.type = type;
         this.element = element;
+    }
+    constructor(element,attribute,value){
+        this.element = element;
+        this.attribute = attribute;
+        this.value = value;
     }
 
    
@@ -12,11 +16,13 @@ export default class Dom{
     }
     create(element,type){
         element = document.createElement(`${type}`);
-        if(type === 'input'){
-            element.setAttribute("type", "button");
-            element.setAttribute("value","More");
-            element.setAttribute('id',"more");
-        }
         return element
+    }
+    appendList(parent,child){
+         parent.appendChild(child);
+        
+    }
+    setAtt(element,attribute,value){
+        element.setAttribute(attribute,value);
     }
 }

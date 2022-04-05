@@ -16,11 +16,14 @@ button.addEventListener("click", () => {
     list.getList(url,1);
     
     let data = new Dom('data','data');
-    data = data.getElement('data','data');
+    let dataL = data.getElement('data','data');
     let moreBtn = new Dom('moreBtn','input');
-     moreBtn = moreBtn.create('moreBtn','input');
-    data.appendChild(moreBtn);
-    moreBtn.addEventListener("click", () =>{
+    let moreBtns = moreBtn.create('moreBtn','input');
+    moreBtn.setAtt(moreBtns,"type", "button");
+    moreBtn.setAtt(moreBtns,"value","More");
+    moreBtn.setAtt(moreBtns,'id',"more");
+    data.appendList(dataL,moreBtns);
+    moreBtns.addEventListener("click", () =>{
         list.getList(url,counter++);
     })
 })
