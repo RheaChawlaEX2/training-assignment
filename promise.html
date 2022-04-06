@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    
+    <h1>Fetched API</h1>
+    <!-- <h4>Number of data to be retrieved <input type="number" name="totalRecords" id="totalRecords"> <input type="button" name="submit" id="submit" value="Submit"></h4> -->
+
+    
+        <div id="ul">
+
+        </div>
+
+        <div id="buttons">
+        <!-- <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>10</button> -->
+        </div>
+   
+    <!-- <script type="module" src="./main.js">
+        loadMain();
+    </script> -->
+    <script type="module">
+        import loadMain from "./main.js";
+        loadMain();        
+        function createButton(item){
+            var btn_div = document.querySelector('#buttons');
+
+            var btn = document.createElement('button')
+            btn.textContent = item;
+            btn_div.appendChild(btn);
+
+            btn.onclick = function(){
+                loadMain(item);
+            }
+        }
+
+        for(var i = 0; i < 10; i++){
+            createButton(i+1);
+            console.log(i); 
+        }
+        
+    </script>
+</body>
+</html>
