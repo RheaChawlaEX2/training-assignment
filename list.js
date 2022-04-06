@@ -5,6 +5,7 @@ import Dom from "./dom.js";
 export default class List {
 
     getList(url,page){
+      
         let list = new Dom('list','ul');
         let listL = list.getElement('list','ul') ;
         const users = new UrlFetch();
@@ -14,8 +15,7 @@ export default class List {
         
         let displayListItems = new DisplayList(data.results,page);
         displayListItems.displayList(data.results,page);
-        let user = new DisplayList(list,listL);
-        // user.addButtons(list,listL)
+       
         console.log("List Log")
 
        
