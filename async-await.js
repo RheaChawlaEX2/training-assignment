@@ -23,7 +23,7 @@ async function isWeekend(today){
 
 
 isWeekend(today).then((resolve) =>{
-    resolve('true');
+    console.log(`Hey! it's party time!!!`);
 } ).catch((weekend) => 
 console.log(`Today, is day ${today.getDay()} and Weekend is ${weekend} of days left`)
 )
