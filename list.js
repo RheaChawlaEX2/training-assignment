@@ -1,6 +1,7 @@
 import UrlFetch from './urlFetch.js';
 import baseUrl from './baseUrl.js';
 import Dom from './dom.js';
+import DisplayList from './displayList.js';
 
 export default class List {
 
@@ -9,23 +10,10 @@ export default class List {
         console.log(baseUrl)
         users.getUserData(url).then((data) => {
         const dataLength = data.results.length; 
-        let list = new Dom('list','ul');
-       let listL = list.getElement('list','ul') 
-       
-        for(let i=0; i<dataLength*counter; i++) {
-            let li = new Dom('li','li');
-             let liL = li.create('li','li');
-            
-            let div = new Dom('div','div');
-            let divL = div.create('div','div');
-                        
-            divL.innerHTML = `<img src=${data.results[i].picture.thumbnail}>  <p> ${data.results[i].name.first} ${data.results[i].name.last} </p>  <p>${data.results[i].gender}</p> `
-                
-        li.appendList(liL,divL);
-      //      li.appendChild(div);
-            console.log(li)
-            list.appendList(listL,liL);        
-        }        
+        
+        let displayListItems = new DisplayList(data.results,counter);
+        displayListItems.displayList(data.results,counter);
+
         return data;
         }).catch((error) => {console.log(error);});           
     }  

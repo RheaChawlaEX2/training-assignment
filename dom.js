@@ -1,8 +1,5 @@
 export default class Dom{
-    constructur(element,type) {
-        this.type = type;
-        this.element = element;
-    }
+   
     constructor(element,attribute,value){
         this.element = element;
         this.attribute = attribute;
