@@ -1,16 +1,29 @@
-let today = new Date()
+let submit = document.getElementById('submit');
+let print = document.getElementById('checkDay');
+
+submit.addEventListener('click', () =>{
+    let today = document.getElementById('date').value;
+    let year = parseInt(today.substring(0,4));
+    let month = parseInt(today.substring(5,7)) ;
+    let day = parseInt(today.substring(8,10));
+    today = new Date(year, month-1, day)
+    console.log(today)
+    console.log(year,month,day);
+
+
+
 /*-------Using Async-Await-----*/
 async function isWeekend(today){
     let weekendCheck = new Promise((resolve,reject) => {
         setTimeout(() => {
             console.log("/*-------Using Async Await-----*/")
             if(today.getDay() == 6 || today.getDay() == 0){
-                resolve();
+                resolve('true');
             }
             else{
             let weekend = (today.getDay()>0) ? (6 - today.getDay()) : (0 - today.getDay());
             reject(weekend);
-                reject()
+               
             }
            
             
@@ -21,22 +34,30 @@ async function isWeekend(today){
 }
 
 
-
 isWeekend(today).then((resolve) =>{
+    let weekend = document.createElement('h5');
+    weekend.innerText = `Hey! it's party time!!!`;
+    print.appendChild(weekend);
     console.log(`Hey! it's party time!!!`);
-} ).catch((weekend) => 
-console.log(`Today, is day ${today.getDay()} and Weekend is ${weekend} of days left`)
-)
+    console.log(resolve);
+} ).catch((weekend) => {
+    let weekday = document.createElement('h5');
+    weekday.innerText = `Today, is day ${today.getDay()} and Weekend is ${weekend} of days left`;
+    print.appendChild(weekday)
+
+
+    console.log(`Today, is day ${today.getDay()} and Weekend is ${weekend} of days left`)
+})
 .finally(() => {
-    switch(today.getDay()){
-        case 0: console.log('Sunday'); break;
-        case 1: console.log('Monday'); break;
-        case 2: console.log('Tuesday'); break;
-        case 3: console.log('Wednesday'); break;
-        case 4: console.log('Thursday'); break;
-        case 5: console.log('Friday'); break;
-        case 6: console.log('Saturday'); break;
-        default: console.log('error')
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday']
+    for(let i=0; i<days.length; i++){
+        if(i === today.getDay()){
+            let h3 = document.createElement('h3'); 
+            h3.innerText = `${days[i]}`;
+            print.appendChild(h3)
+        } 
     }
   
+});
+ 
 });
