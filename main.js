@@ -1,59 +1,33 @@
+import RandomNumberGenerator from "./randomNumberGenerator.js";
+import EqualityChecker from "./equalityChecker.js";
 
-
-const inputNumber = () => {
+const button = document.getElementById('submit');
+console.log(button);
+button.addEventListener('click',() => {
     return new Promise((resolve, reject) => {
-      const number = Number(prompt("Enter a number (1 - 6):")); 
-      const randomNumber = Math.floor(Math.random() * 6 + 1); 
-  
-      if (isNaN(number)) {
-        reject(new Error("Wrong Input Type")); 
+      const guessNumber = Number(document.getElementById('guessNumber').value); 
+      let randomNumber = new RandomNumberGenerator();
+      randomNumber = randomNumber.randomNumber();
+      console.log(guessNumber);
+      if (guessNumber>6) {
+        reject("Wrong Input Type"); 
       }
-  
-      if (number === randomNumber) { 
-        resolve({
-          score: 2,
-          randomNumber,
-        });
-      } else if (number === randomNumber - 1 || number === randomNumber + 1) { 
-        resolve({
-          score: 1,
-          randomNumber,
-        });
-      } else { 
-        resolve({
-          score: 0,
-          randomNumber,
-        });
+      else{
+        resolve(guessNumber,randomNumber);{      
+         let score = new EqualityChecker();
+         score = score.isEqualToRandomNumber(guessNumber, randomNumber);
+         console.log(score);
+          let div = document.getElementById('output');
+        //  console.log(div)
+          div.innerHTML = `<h5>Random Number Generator : ${randomNumber}</h5>
+          <h5> Guessed Number : ${guessNumber}</h5>
+          <h5> Score : ${score}<h5>`;
+          console.log(div.innerHTML)
+        }
       }
     });
-  };
+  }
+)
+
   
-  const continueGame = () => {
-    return new Promise((resolve) => {
-      if (window.confirm("Do you want to continue?")) { 
-        resolve(true);
-      } else {
-        resolve(false);
-      }
-    });
-  };
   
-  const resultScore = async () => {
-    try {
-      const result = await inputNumber(); 
-  
-      alert(`Guess: ${result.randomNumber} -> Score ${result.score} score`);
-  
-      const toContinue = await continueGame();
-  
-      if (toContinue) {
-        handleGuess();
-      } else {
-        alert("Game ends");
-      }
-    } catch (error) { 
-      alert(error);
-    }
-  };
-  
-  resultScore();
