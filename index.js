@@ -1,67 +1,101 @@
 import ImageExtraction from "./imageExtraction.js";
 import {baseUrl,page} from "./baseUrl.js";
 
-let url = `${baseUrl}${page}`
-console.log(`Test URL = ${url}`);
-let i = 0;
-let imageSlider = document.querySelector('.slider');
-let image = document.querySelector('#img-box');
-
-const list = new ImageExtraction();
-let Interval;
 
 
-//extract(url,i);
-list.imageExtractor(url,i);
 
-
-image.addEventListener('mouseout', () => {
-   Interval = setInterval( () => {
-    extract(url,i)
+export function responsiveImage() {
+    let counter = 0;
+    let url = `${baseUrl}${page}`
+    console.log(`Test URL = ${url}`);
     
-    } ,2000);
-    if(i<=3){
-        list.imageExtractor(url,i++)
+    let prev = document.getElementById('prev');
+    let next = document.getElementById('next');
+
+    const list = new ImageExtraction();
+    list.imageExtractor(url,counter);
+    
+    
+
+    prev.onclick = () => {
+        counter = counter - 1;
+        slideShow(counter)
+    }
+    next.onclick = () =>{
+        counter = counter + 1;
+        slideShow(counter)
+    }
+    
+  function  slideShow(num) {
         
-    }
-    else{
-        list.imageExtractor(url,i=0)
+        let slides = document.querySelectorAll(".slide");
       
-    
-    }
+        if (num == slides.length) {
+            counter = 0;
+            num = 0;
+          }
+          if (num < 0) {
+            counter = slides.length - 1;
+            num = slides.length - 1;
+          }
+        
+          for (let slide of slides) {
+            slide.style.display = "none";
+          }
+          slides[num].style.display = "block";
+      
+      
+      }
 
-    
-});
+      let imgBox = document.querySelector('.slider');
+      let Interval;
+      function interval(){
+        Interval = setInterval(() => {
+            next.onclick();       
+           
+         },2000);
+        
+      }
+      interval()
 
+      imgBox.addEventListener('mouseover', () => {
+        mouseHover(Interval)   
+    });
 
-imageSlider.addEventListener('mouseover', () => {
-   clearInterval(Interval);
-   extract(url,i);
-   
-})
-
-
-
-
-function extract(url,i){
-   
-       
-    prev.addEventListener("click", () => {
-        if(i < 0) i = 4;	
-            i--;
-        list.imageExtractor(url,i);
+    imgBox.addEventListener('mouseout', () => {
+        Interval = setInterval(() => {
+            next.onclick();       
+           
+         },2000);
     })
-    next.addEventListener("click", () => {
-        if(i >= 3) i = -1;
-        i++;
-        list.imageExtractor(url,i);
-    })
    
-} 
-
-
-
-
-
  
+
+      function mouseHover(Interval){
+        
+            clearInterval(Interval);
+           
+        
+       
+      }
+       
+   
+   
+    
+   
+
+    
+    
+          
+   
+}
+
+export default window.onload = () => {
+   
+   responsiveImage()
+}
+
+
+
+
 

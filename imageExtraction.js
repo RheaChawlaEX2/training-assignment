@@ -1,30 +1,34 @@
+
 import UrlFetch from "./urlFetch.js";
 
 export default class ImageExtraction{    
-    imageExtractor(url,i){
+    imageExtractor(url){
         
-        const users = new UrlFetch();
-        console.log(url)
-
-        users.getUserData(url).then((data) => {
-
-            let imgClass = document.getElementById("img-box")
+        const imageData = new UrlFetch();
+        imageData.getUserData(url).then((data) => {
             
-            let img = document.querySelector('img');
-            console.log(imgClass)
-          
-            
-                let imgData = data.results[i].picture.large;
-                img.setAttribute("src", `${imgData}` );
-           
-            
-
-            console.log(img)
+                let dataList = [];
+                let imageSlider = document.querySelector('.slider');                
+                for(let i = 0; i < data.results.length; i++){
+                    
+                    let div = document.createElement('div');
+                    div.className = 'slide';
+                    let img = document.createElement('img');
+                    dataList[i] = data.results[i].picture.large;
+                    div.appendChild(img);
+                    img.src = data.results[i].picture.large;
+                    div.style.display= "none";
+                    imageSlider.appendChild(div);
+                   
+                   
+                }
     
         return data;
         }).catch((error) => {console.log(error);});           
         
     }
+   
+   
 
     
 
