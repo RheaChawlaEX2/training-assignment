@@ -1,0 +1,19 @@
+<div class="box" [style.display]='displayNone' [style.background]='background'(click) = "onCourseView()" *ngIf="user" [ngClass]="{'deleted': user.isDeleted}"  >
+    <div class="box-header">
+        {{user?.id}} 
+       </div>
+    
+    <div [ngClass]="'card'" *ngIf="!user.isDeleted; else deletedItem " >        
+            {{user?.name + ' - ' + user?.email}} 
+            <button type="button"  (click)="toggle()" class="btn btn cross" >&times;</button>
+    </div>
+    <ng-template #deletedItem >
+        <div ngClass="card">
+            {{user?.name + ' - ' + user?.email}} 
+            <button type="button"  (click)="toggle()" >+</button>
+        
+        </div>
+          
+    </ng-template>
+</div>
+
