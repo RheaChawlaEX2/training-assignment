@@ -52,11 +52,12 @@ export class UserCardComponent implements OnInit {
   toggle(): void {
     this.toggleRequest.emit(this.user);
     this.displayNone = this.displayNone ? '' : 'none';   
-    this.background = this.background ? 'red' : 'white';
     
     if(this.user)
       this.user.isDeleted = this.user.isDeleted ? true : false;
-      console.log("user is deleted," , this.user?.isDeleted)
+      console.log("user is deleted," , this.user?.isDeleted);
+     
+   
 
   }
 

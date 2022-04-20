@@ -29,6 +29,8 @@ export class UserCardListComponent implements OnInit {
     user.isDeleted = !user.isDeleted;
   }
 
+  
+
   // addUser(user: User){
   //   this.users.push(user);
   // }

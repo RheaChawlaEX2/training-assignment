@@ -1,19 +1,20 @@
 
-<ng-container *ngFor="let user of users;">
-<app-user-card   *ngIf="user.isDeleted == false"   (toggleRequest)="toggleUser($event)"  [user] = "user" >    
+<ng-container *ngFor="let user of users;" >
+<app-user-card   *ngIf="user.isDeleted == false"  (toggleRequest)="toggleUser($event)"  [user] = "user" >  
+    <br>  
 </app-user-card>
 
-<!-- <app-user-card   *ngIf="user.isDeleted == true" (toggleRequest)="toggleUser($event)"  [user] = "user">  </app-user-card> -->
+<app-user-card   *ngIf="user.isDeleted == true" (toggleRequest)="toggleUser($event)"  [user] = "user">
+    <br>  </app-user-card>
 
 </ng-container>
 <hr>
 <br>
 <br>
 <hr>
-<ng-container *ngFor="let user of users;">
+<!-- <ng-container *ngFor="let user of users;">
 <app-user-card   *ngIf="user.isDeleted == true"   (toggleRequest)="toggleUser($event)"  [user] = "user" >   
  </app-user-card>
  
  </ng-container>  
-<!-- <app-user-card *ngFor="let deleted of users;"   (toggleRequest)="addUser($event)"  [user]="deleted" ></app-user-card>-->
-
+ -->
