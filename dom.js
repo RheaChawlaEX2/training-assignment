@@ -4,9 +4,7 @@ export default class Dom{
         this.element = element;
         this.attribute = attribute;
         this.value = value;
-    }
-
-   
+    }   
     getElement(element,type) {
         element = document.getElementById(type);
         return element
